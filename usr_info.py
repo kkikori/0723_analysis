@@ -17,7 +17,7 @@ def _comment_nums(Usr_list, group_n):
 
     plt.bar(list(range(len(coms))), coms, tick_label=names_label, align="center")
     plt.title(group_n)
-    plt.ylim(0, 40)
+    plt.ylim(0,40)
     plt.xticks(list(range(len(coms))), names_label, rotation=30)
     plt.savefig(fn_path + group_n + ".png")
     plt.show()
@@ -26,6 +26,7 @@ def _comment_nums(Usr_list, group_n):
     print("最小値,", min(coms))
     print("平均", sum(coms) / len(coms))
     print("平均")
+    print(len(coms))
 
 
 def usr_analysis_main(Usr_list, group_n):
