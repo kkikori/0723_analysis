@@ -1,6 +1,9 @@
 import sys
 import json
-from analysis_preparate import data_load
+import analysis_preparate
+import usr_info
+import thread_info
+
 
 def _load_data(fn):
     if not fn.exists():
@@ -11,5 +14,8 @@ def _load_data(fn):
     f.close()
     return jsonData
 
-def analysis_main(file_paths):
-    Threads_list, Post_list, Usr_list = data_load(file_paths)
+
+def analysis_main(group_n, file_paths):
+    Thread_list, Post_list, Usr_list = analysis_preparate.data_load(file_paths)
+    # usr_info.usr_analysis_main(Usr_list, group_n)
+    thread_info.thread_analysis_main(Thread_list, Post_list, group_n)
