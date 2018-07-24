@@ -1,0 +1,26 @@
+{
+  "ALPHA": {
+    "THREADS": "/Users/ida/Dropbox/20180723_threads_data/threads/alpha",
+    "USRS": "/Users/ida/Dropbox/20180723_threads_data/usr/alpha",
+    "INDIVIDUAL_Q": "/Users/ida/Dropbox/results_asking1/to_individual_q_list.csv",
+    "COLLECTIVE_Q": "/Users/ida/Dropbox/results_asking1/to_collective_q_list.csv"
+  },
+  "BRAVO": {
+    "THREADS": "/Users/ida/Dropbox/20180723_threads_data/threads/bravo",
+    "USRS": "/Users/ida/Dropbox/20180723_threads_data/usr/bravo",
+    "INDIVIDUAL_Q": null,
+    "COLLECTIVE_Q": null
+  },
+  "CHARLIE": {
+    "THREADS": "/Users/ida/Dropbox/20180723_threads_data/threads/charlie",
+    "USRS": "/Users/ida/Dropbox/20180723_threads_data/usr/charlie",
+    "INDIVIDUAL_Q": "/Users/ida/Dropbox/results_asking2/to_individual_q_list.csv",
+    "COLLECTIVE_Q": "/Users/ida/Dropbox/results_asking2/to_collective_q_list.csv"
+  },
+  "DELTA": {
+    "THREADS": "/Users/ida/Dropbox/20180723_threads_data/threads/delta",
+    "USRS": "/Users/ida/Dropbox/20180723_threads_data/usr/delta",
+    "INDIVIDUAL_Q": null,
+    "COLLECTIVE_Q": null
+  }
+}
