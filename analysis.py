@@ -3,6 +3,7 @@ import json
 import analysis_preparate
 import usr_info
 import thread_info
+import facilitator_info
 
 
 def _load_data(fn):
@@ -17,5 +18,7 @@ def _load_data(fn):
 
 def analysis_main(group_n, file_paths):
     Thread_list, Post_list, Usr_list = analysis_preparate.data_load(file_paths)
-    usr_info.usr_analysis_main(Usr_list, group_n)
-    #thread_info.thread_analysis_main(Thread_list, Post_list, group_n)
+    #usr_info.usr_analysis_main(Usr_list, group_n)
+    # thread_info.thread_analysis_main(Thread_list, Post_list, group_n)
+    if group_n in ["ALPHA","CHARLIE"]:
+        facilitator_info.facilitator_analysis_main(Thread_list, Post_list, Usr_list)
