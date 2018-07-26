@@ -1,5 +1,7 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+
 import datetime as dt
 
 FACILITATER_ID = 24
@@ -61,6 +63,7 @@ def _temporal_sequence_extract(thread, Post_list):
             [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 
     for pi in thread.pi_list:
+
         num_i = 0
         while num_i < len(nums):
             limit_t = start_t + five_min * (num_i + 1)
@@ -70,32 +73,65 @@ def _temporal_sequence_extract(thread, Post_list):
                 else:
                     nums[num_i][0] += 1
                 break
-            num_i += num_i
+            num_i += 1
 
     nums[11][0] += nums[12][0]
     nums[11][1] += nums[12][1]
     nums.pop(-1)
 
-    return nums
+    return np.array(nums)
 
 
-def _time_series(Thread_list, Post_list):
+def _check_start(counts):
+    height = list(counts[:, 0])
+    print(height)
+
+    for i, post_num in enumerate(height):
+        if post_num == 0:
+            continue
+        r_height = height[i:]
+        print("r_height", r_height)
+        r_left = list(range(i, len(height)))
+        print("r_left  ", r_left)
+        if len(r_height) != len(r_left):
+            print("you cannot list")
+            return False
+        return r_left, r_height
+    return None,None
+
+
+def _time_series(Thread_list, Post_list, group_n):
     # 抽出
     thread_post_nums = []
-    for th_i in range(Thread_list):
+    titles = []
+    for th_i in range(1, len(Thread_list)):
         thread = Thread_list[th_i]
+        print(" title", thread.title)
         thread_post_nums.append(_temporal_sequence_extract(thread, Post_list))
+        titles.append(thread.title)
 
-    #とりあえず表示
+    # とりあえず表示
     # 折れ線グラフを出力
-    left = np.array(list(range(thread_post_nums[0])))
-    for post_nums in thread_post_nums:
-        counts = np.array(post_nums)
-        height = counts[:,0]
-        plt.plot(left, height)
+
+    for th_i, counts in enumerate(thread_post_nums):
+        thread = Thread_list[th_i + 1]
+
+        left, height = _check_start(counts)
+        if left == None:
+            continue
+        plt.plot(left, height, label=thread.id)
+        plt.plot(left[0], height[0], 'o')
+
+
+    plt.xticks(list(range(len(thread_post_nums))),
+               ["2018/07/23 \n 16:20", "", "16:30", "", "16:40", "", "16:50", "", "17:00", "", "17:10", "", "17:20"], )
+    plt.legend()
     plt.show()
 
 
 
+
+
 def thread_analysis_main(Thread_list, Post_list, group_n):
-    _comment_nums(Thread_list, Post_list, group_n)
+    # _comment_nums(Thread_list, Post_list, group_n)
+    _time_series(Thread_list, Post_list, group_n)
