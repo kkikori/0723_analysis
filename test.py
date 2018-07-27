@@ -6,9 +6,7 @@ import datetime as dt
 from matplotlib.collections import LineCollection
 
 
-
 def main():
-
     # X軸データ
     x = [dt.datetime(2010, 1, 1), dt.datetime(2010, 1, 2),
          dt.datetime(2010, 1, 3), dt.datetime(2010, 1, 4),
@@ -21,7 +19,7 @@ def main():
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(x, y)
-    ax.plot(dt.datetime(2010,1,1,12,30),5,"o")
+    ax.plot(dt.datetime(2010, 1, 1, 12, 30), 5, "o")
 
     days = mdates.DayLocator()  # every day
     daysFmt = mdates.DateFormatter('%m-%d')
@@ -29,6 +27,7 @@ def main():
     ax.xaxis.set_major_formatter(daysFmt)
     fig.autofmt_xdate()
     plt.show()
+
 
 def plottest():
     # Now do a second plot coloring the curve using a continuous colormap
@@ -49,6 +48,18 @@ def plottest():
     plt.ylim(-1, 1)
     plt.show()
 
+
+def plotmulti():
+    x = [[1, 2], [4, 5],[6]]
+    y = [[8, 9], [10, 11],[20]]
+    labels = ["!", "?"]
+
+    plt.plot(x, y, label=labels)
+    plt.legend(loc='upper left')
+    plt.show()
+
+
 if __name__ == "__main__":
-    #main()
-    plottest()
+    # main()
+    # plottest()
+    plotmulti()

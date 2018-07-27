@@ -43,8 +43,14 @@ def _counter_post(Thread_list, Post_list, group_n):
         if len(x_times) == 0:
             print("     this thread has not post from users.")
             continue
-
-        ax.plot(x_times, y_nums, label=th_i)
+        if group_n == "ALPHA":
+            ax.plot(x_times, y_nums, label=th_i, color=cm.spring((th_i - 1) / len(Thread_list)))
+        elif group_n == "BRAVO":
+            ax.plot(x_times, y_nums, label=th_i, color=cm.summer((th_i - 1) / len(Thread_list)))
+        elif group_n == "CHARLIE":
+            ax.plot(x_times, y_nums, label=th_i, color=cm.autumn((th_i - 1) / len(Thread_list)))
+        else:
+            ax.plot(x_times, y_nums, label=th_i, color=cm.winter((th_i - 1) / len(Thread_list)))
 
     days = mdates.MinuteLocator(interval=5)
     daysFmt = mdates.DateFormatter('%H:%M')
@@ -53,7 +59,7 @@ def _counter_post(Thread_list, Post_list, group_n):
     plt.xlim(start_t, finish_t)
     plt.ylim(0, 70)
     plt.title(group_n)
-    #plt.legend(loc='upper left')
+    # plt.legend(loc='upper left')
     fig.autofmt_xdate()
     plt.savefig(fn_path + group_n[0] + "_per_counter_post_no_legend" + ".png")
     plt.show()
