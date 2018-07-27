@@ -97,7 +97,7 @@ def _check_start(counts):
             print("you cannot list")
             return False
         return r_left, r_height
-    return None,None
+    return None, None
 
 
 def _time_series(Thread_list, Post_list, group_n):
@@ -122,14 +122,10 @@ def _time_series(Thread_list, Post_list, group_n):
         plt.plot(left, height, label=thread.id)
         plt.plot(left[0], height[0], 'o')
 
-
     plt.xticks(list(range(len(thread_post_nums))),
                ["2018/07/23 \n 16:20", "", "16:30", "", "16:40", "", "16:50", "", "17:00", "", "17:10", "", "17:20"], )
     plt.legend()
     plt.show()
-
-
-
 
 
 def thread_analysis_main(Thread_list, Post_list, group_n):

@@ -1,14 +1,19 @@
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import matplotlib.cm as cm  # http://matplotlib.org/examples/color/colormaps_reference.html
 
 import datetime as dt
 
 FACILITATER_ID = 24
 except_usr_id = ["unagi", "maguro", "saba", "iwashi", "aji", "shirauo", "facilitator", "structure_estimator"]
 except_usr_id = [18, 19, 20, 21, 22, 23, 24, 25]
-fn_path = "/Users/ida/Desktop/0723_resutls/threads/"
+fn_path = "/Users/ida/Desktop/0723_resutls/time_series/"
+
+start_time = "2018-07-23T07:20:00"
+finish_time = "2018-07-23T08:20:00"
+
+start_t = dt.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S")
+finish_t = dt.datetime.strptime(finish_time, "%Y-%m-%dT%H:%M:%S")
 
 
 def _extract_time(thread_pi_list, Post_list):
@@ -33,18 +38,24 @@ def _counter_post(Thread_list, Post_list, group_n):
 
     for th_i in range(1, len(Thread_list) + 1):
         thread = Thread_list[th_i]
-        print(" title", thread.title,th_i)
+        print(" title", thread.title, th_i)
         x_times, y_nums = _extract_time(thread.pi_list, Post_list)
         if len(x_times) == 0:
             print("     this thread has not post from users.")
             continue
 
-        ax.plot(x_times, y_nums,)
+        ax.plot(x_times, y_nums, label=th_i)
+
     days = mdates.MinuteLocator(interval=5)
     daysFmt = mdates.DateFormatter('%H:%M')
     ax.xaxis.set_major_locator(days)
     ax.xaxis.set_major_formatter(daysFmt)
+    plt.xlim(start_t, finish_t)
+    plt.ylim(0, 70)
+    plt.title(group_n)
+    #plt.legend(loc='upper left')
     fig.autofmt_xdate()
+    plt.savefig(fn_path + group_n[0] + "_per_counter_post_no_legend" + ".png")
     plt.show()
 
 
