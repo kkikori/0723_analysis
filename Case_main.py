@@ -2,6 +2,7 @@ import sys
 import json
 from pathlib import Path
 import analysis_preparate
+import CaseTest
 
 
 #
@@ -29,6 +30,9 @@ def main():
     for group_n in group_names:
         print("-" * 15, "  ", group_n, "  ", "-" * 20)
         Thread_list, Post_list, Usr_list = analysis_preparate.data_load(group_files[group_n])
+        if group_n == "ALPHA":
+            print("group_n", group_n)
+            CaseTest.reading_cases(Thread_list, Post_list, Usr_list)
 
 
 if __name__ == "__main__":
