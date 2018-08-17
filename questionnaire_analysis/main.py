@@ -3,6 +3,7 @@ from pathlib import Path
 import csv
 import numpy as np
 from scipy import stats
+import kruskalWallis
 
 
 # ただcsvを読み込むだけ
@@ -28,7 +29,7 @@ def fairing_totalsums(datas, degree):
         datas_int.append(li)
 
     datas = np.array(datas_int)
-    print(datas)
+    #print(datas)
     if len(datas[:, 0]) % degree != 0:
         print("datas error")
         print(datas)
@@ -38,9 +39,9 @@ def fairing_totalsums(datas, degree):
     faired_data = []
 
     for ri in range(len(datas[0])):
-        print("ri", ri)
+        #print("ri", ri)
         row = datas[:, ri]
-        print(row)
+        #print(row)
         faired_r = np.array([row[i:i + degree] for i in range(0, len(row), degree)])
         faired_data.append(faired_r.tolist())
 
@@ -80,13 +81,7 @@ def _faied(datas):
     return r_datas
 
 
-def main():
-    # fn = Path("/Users/ida/Desktop/静大実験解析用/total_answers.csv")
-    fn = Path("/Users/ida/Desktop/静大実験解析用/議論システムについて.csv")
-    header, datas = read_data_from_csv(fn)
-    print(header)
-    faired_data = fairing_totalsums(datas, 5)
-    print(faired_data[0])
+def kruskal_test(faired_data, header):
     for k in range(len(faired_data)):
         print("\n")
         print(header[k])
@@ -136,6 +131,24 @@ def main():
         result = stats.ks_2samp(alfa, charlie)
         # print(result)
         print(result.statistic, result.pvalue)
+
+
+def mykruskal_test(faired_data, headers):
+    for name, data in zip(headers, faired_data):
+        print(name)
+        kruskalWallis.kruskal_calc(datas=data)
+
+
+def main():
+    # データ読み込み
+    fn = Path("/Users/ida/Desktop/静大実験解析用/total_answers.csv")
+    #fn = Path("/Users/ida/Desktop/静大実験解析用/議論システムについて.csv")
+    header, datas = read_data_from_csv(fn)
+    #print(header)
+    faired_data = fairing_totalsums(datas, 7)
+
+    # kruskal_test(faired_data, header)
+    mykruskal_test(faired_data, header)
 
 
 if __name__ == "__main__":
