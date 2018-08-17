@@ -42,18 +42,19 @@ def kruskal_calc(datas):
     RS = [sum(j) for j in juniwa]
     print("juniwa", RS)
 
-    #とりあえずここまではあってる
-
     # 平均順位
     RS_2 = [RS[i] * RS[i] / gun_nums[i] for i in range(len(datas))]
     print("RS_2", RS_2)
 
     # 修正項を求める
-    syuseis = [line * (line * line - 1) for line in line_sum]
-    C = 1 - (sum(syuseis) / N * N * N - N)
+    syuseis = [(line * line * line) - line for line in line_sum]
+    C = 1 - (sum(syuseis) / (N * N * N - N))
+    print("修正項：", C)
 
     # 検定統計量
-    statistics = (6 / C) * (2 * sum(RS_2) / (N * (N + 1)) - (N + 1) / 2)
+    statistics = 2 * sum(RS_2) / (N * (N + 1)) - (N + 1) / 2
+    statistics = statistics * (6 / C)
+    print(statistics)
 
     # 自由度
     jiyuudo = sum(datas[:, 0]) - 1
@@ -71,6 +72,7 @@ def kruskal_wallis(titles, datas, print_title=True):
 
 
 def test():
+    # http://halbau.world.coocan.jp/multigrp.html#kruskal
     x = [8, 10, 6, 1]
     y = [3, 9, 10, 4]
     z = [3, 8, 11, 3]
