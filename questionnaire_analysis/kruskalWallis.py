@@ -7,6 +7,7 @@ from numpy import array, asarray, ma, zeros
 
 def kruskal_calc(datas):
     hierarchy = len(datas[0])
+    data_size = len(datas)
     datas = np.array(datas)
 
     # 各群の合計数
@@ -57,10 +58,12 @@ def kruskal_calc(datas):
     print(statistics)
 
     # 自由度
-    jiyuudo = sum(datas[:, 0]) - 1
+    jiyuudo = data_size - 1
+    print("自由度", jiyuudo)
 
     # p値
-    # p = stats.chi2_contingency(statistics,)
+    p = stats.chi2.sf(statistics, jiyuudo)
+    print("p値", p)
 
 
 def kruskal_wallis(titles, datas, print_title=True):
