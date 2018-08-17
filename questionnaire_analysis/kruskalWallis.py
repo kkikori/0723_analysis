@@ -55,7 +55,7 @@ def kruskal_calc(datas):
     # 検定統計量
     statistics = 2 * sum(RS_2) / (N * (N + 1)) - (N + 1) / 2
     statistics = statistics * (6 / C)
-    print(statistics)
+    print("検定統計量", statistics)
 
     # 自由度
     jiyuudo = data_size - 1
