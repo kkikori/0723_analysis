@@ -81,7 +81,7 @@ def _faied(datas):
 
 
 def main():
-    #fn = Path("/Users/ida/Desktop/静大実験解析用/total_answers.csv")
+    # fn = Path("/Users/ida/Desktop/静大実験解析用/total_answers.csv")
     fn = Path("/Users/ida/Desktop/静大実験解析用/議論システムについて.csv")
     header, datas = read_data_from_csv(fn)
     print(header)
@@ -119,6 +119,7 @@ def main():
         # print(result)
         print(result.statistic, result.pvalue)
 
+    print("\"alfa and bravo\" vs　\"charlie and delta\" ")
     for k in range(len(faired_data)):
         print("\n" * 1)
         print(header[k])
@@ -131,6 +132,7 @@ def main():
         alfa.extend(bravo)
         charlie.extend(delta)
         # result = stats.ranksums(alfa, charlie)
+        print(alfa, charlie)
         result = stats.ks_2samp(alfa, charlie)
         # print(result)
         print(result.statistic, result.pvalue)
