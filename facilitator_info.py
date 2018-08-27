@@ -26,7 +26,7 @@ def _usrs(User_list):
 
 
 def _print_post(post):
-    print("*" * 5, post.id, "(", post.user_id, ")", "*" * 10)
+    print("*" * 5, post.id, "(", post.user_id, post.created_at,")", "*" * 10)
     for s in post.sentences:
         print(s.body)
 
