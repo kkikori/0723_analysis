@@ -5,6 +5,7 @@ import usr_info
 import thread_info
 import facilitator_info
 import time_series
+import post_interval
 
 
 def _load_data(fn):
@@ -20,8 +21,9 @@ def _load_data(fn):
 def analysis_main(group_n, file_paths):
     Thread_list, Post_list, Usr_list = analysis_preparate.data_load(file_paths)
     # usr_info.usr_analysis_main(Usr_list, group_n)
-    thread_info.thread_analysis_main(Thread_list, Post_list, group_n)
+    #thread_info.thread_analysis_main(Thread_list, Post_list, group_n)
     # if group_n in ["ALPHA","CHARLIE"]:
     #     facilitator_info.facilitator_analysis_main(Thread_list, Post_list, Usr_list)
 
     #time_series.time_series_analysis_main(Thread_list, Post_list, Usr_list, group_n)
+    post_interval.post_interval_analysis_main(Post_list,Usr_list)

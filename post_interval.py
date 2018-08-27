@@ -17,7 +17,12 @@ def _facilitator_has_reply(Post_list):
         if rep_rep_post.user_id == post.user_id:
             interval_times.append(post.created_at - rep_rep_post.created_at)
 
-    return interval_times
+    interval_seconds =[]
+    for it in interval_times:
+        print(it,it.total_seconds())
+        interval_seconds.append(it.total_seconds())
+
+    return interval_seconds
 
 
 def _extract_interval_times(Post_list, user):
@@ -31,8 +36,12 @@ def _extract_interval_times(Post_list, user):
     for ti in range(1, com_nums):
         before_p = Post_list[pi_list[ti - 1]]
         after_p = Post_list[pi_list[ti]]
-        intervals.append(after_p - before_p)
-    return intervals
+        intervals.append(after_p.created_at - before_p.created_at)
+
+    interval_seconds = []
+    for it in intervals:
+        interval_seconds.append(it.total_seconds())
+    return interval_seconds
 
 
 def _user_intervals(Post_list, User_list):
@@ -41,12 +50,13 @@ def _user_intervals(Post_list, User_list):
         if user.name in except_usr_id:
             continue
         intervals = _extract_interval_times(Post_list, user)
-        if not intervals:
+        if intervals:
             interval_times.extend(intervals)
     return interval_times
 
 
 def post_interval_analysis_main(Post_list, User_list):
+
     facilitator_interval_times = _facilitator_has_reply(Post_list)
     total_interval_times = _user_intervals(Post_list, User_list)
     print("facilitator_interval_Times",facilitator_interval_times)
