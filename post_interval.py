@@ -6,7 +6,7 @@ except_usr_name = ["unagi", "maguro", "saba", "iwashi", "aji", "shirauo", "facil
 except_usr_id = [18, 19, 20, 21, 22, 23, 24, 25]
 fn_path = "/Users/ida/Desktop/0723_resutls/usrs/"
 
-
+#　ファシリテータ間の投稿間隔時間を抽出し，リストで返す．
 def _facilitator_has_reply(Post_list):
     interval_times = []
     for pi, post in Post_list.items():
@@ -18,7 +18,7 @@ def _facilitator_has_reply(Post_list):
         print("")
 
         rep_rep_post = Post_list[rep_post.reply_to_id]
-        if rep_rep_post.user_id == post.user_id :
+        if rep_rep_post.user_id == post.user_id:
             interval_times.append(post.created_at - rep_rep_post.created_at)
 
     interval_seconds = []
@@ -28,7 +28,7 @@ def _facilitator_has_reply(Post_list):
 
     return interval_seconds
 
-
+# userの投稿間隔時間をPost_listより抽出し，リストにして返す（秒単位）
 def _extract_interval_times(Post_list, user):
     pi_list = user.pi_list
     com_nums = len(pi_list)
@@ -48,6 +48,7 @@ def _extract_interval_times(Post_list, user):
     return interval_seconds
 
 
+# 各ユーザの投稿間隔時間をリストにして返す（秒単位）
 def _user_intervals(Post_list, User_list):
     interval_times = []
     for user_id, user in User_list.items():
@@ -59,6 +60,7 @@ def _user_intervals(Post_list, User_list):
     return interval_times
 
 
+# 投稿間隔時間をKS検定する
 def _calc_intervals(facilitator_intervals, another_intervals):
     # facilitator_intervals = np.array(facilitator_intervals)
     # another_intervals = np.array(another_intervals)
@@ -69,6 +71,7 @@ def _calc_intervals(facilitator_intervals, another_intervals):
     questionnaire_analysis.krus()
 
 
+# 投稿間隔時間を調べる
 def post_interval_analysis_main(Post_list, User_list):
     facilitator_interval_times = _facilitator_has_reply(Post_list)
     total_interval_times = _user_intervals(Post_list, User_list)
