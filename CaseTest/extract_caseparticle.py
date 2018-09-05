@@ -26,6 +26,7 @@ def _extract_from_sentence(post):
 def extract_caseparticle_main(Post_list, stopword_list):
     Caseframe_list = {}
     for pi, post in Post_list.items():
+        print("           pi =",pi)
         cps = _extract_from_sentence(post)
         if len(cps) == 0:
             continue
@@ -37,6 +38,5 @@ def extract_caseparticle_main(Post_list, stopword_list):
                     Caseframe_list[cp["noun"]] = case_particle.CaseframeClass(noun=cp["noun"])
                 Caseframe_list[cp["noun"]].pairs.append(cp["cp"])
 
-    nouns = Caseframe_list.kesy()
     return Caseframe_list
 

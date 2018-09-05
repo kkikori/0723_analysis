@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 import simplejson as json
-from .extract_caseparticle import extract_caseparticle_main
+import CaseTest
 
 sys.path.append('/Users/ida/github/AskingKalliopeia/src/')
 import case_particle
@@ -39,5 +39,5 @@ def _preparate_file_paths():
 def reading_cases(group_n, Post_list):
     print("reading_cases")
     f_cases, stop_word_list = _pre_paths(group_n)
-    Caseframe_list = extract_caseparticle_main(Post_list, stop_word_list)
+    Caseframe_list = CaseTest.extract_caseparticle_main(Post_list, stop_word_list)
     case_particle.update_cases_file(f_cases, Caseframe_list.keys(), Caseframe_list)

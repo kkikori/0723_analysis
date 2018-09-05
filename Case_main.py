@@ -24,13 +24,6 @@ def _preparate_file_paths():
     return group_file_paths
 
 
-def _modify(Post_list):
-    for pi, post in Post_list.items():
-        post_phs = []
-        for si, s in enumerate(post.sentences):
-            p_mrph =
-
-
 def main():
     group_files = _preparate_file_paths()
     group_names = sorted(group_files.keys())
@@ -39,9 +32,7 @@ def main():
         Thread_list, Post_list, Usr_list = analysis_preparate.data_load(group_files[group_n])
         if group_n == "ALPHA":
             print("group_n", group_n)
-            CaseTest.reading_cases(group_n, Thread_list, Post_list, Usr_list)
-
-        _modify(Post_list)
+            CaseTest.reading_cases(group_n, Post_list)
 
 
 if __name__ == "__main__":
