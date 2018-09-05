@@ -25,7 +25,11 @@ def main():
     cps = case_particle.extract_cp(phs)
     print("cps")
     for cp in cps:
-        print(cp["noun"], cp["particle"], cp["predicate"])
+        print("noun:", cp["noun"]),
+        print("particle:", cp["particle"])
+        print("predicate:", cp["predicate"])
+        if cp["category"]:
+            print("predicate:", cp["category"])
 
 
 if __name__ == "__main__":
