@@ -1,17 +1,13 @@
-import csv
 import sys
 from pathlib import Path
+
+from .data_load import data_load
 
 
 def main():
     # data load
     f_n = Path("/Users/ida/Dropbox/AAAI_discussion_dummy.csv")
-    if not f_n.exists():
-        print("[FILE ERROR]", f_n, "is not found.")
-        sys.exit()
-
-    with f_n.open("r") as f:
-        reader =
+    user_list, post_list = data_load(f_n)
 
 
 if __name__ == "__main__":
