@@ -47,3 +47,6 @@ def load_user(token, ui):
 
 def create_post(token, data):
     _send(endpoint="posts", token=token, data=data,type="post")
+
+def create_thread(token,data):
+    _send(endpoint="threads", token=token, data=data, type="post")
