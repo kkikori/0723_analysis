@@ -1,17 +1,19 @@
 import sys
 from pathlib import Path
 
-from .data_load import data_load
-from .create_post import create_post_main
+import create_post
+import data_load
 
+
+# 読み込んだデータをAPIを使って復元
 
 def main():
-    # data load
+    # posts data load
     f_n = Path("/Users/ida/Dropbox/AAAI_discussion_dummy.csv")
-    user_list, post_list = data_load(f_n)
+    user_list, post_list = data_load.data_load(f_n)
 
     # post post
-    create_post_main(user_list, post_list)
+    create_post.create_post_main(user_list, post_list)
 
 
 if __name__ == "__main__":

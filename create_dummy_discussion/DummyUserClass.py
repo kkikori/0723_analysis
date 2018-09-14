@@ -1,7 +1,8 @@
-from .fetch_api import get_access_token
+import fetch_api
+
 
 class DummyUser():
     def __init__(self, name):
-       self.name = name
-       self.password = "test"
-       self.token = get_access_token(self.name,self.password)
+        self.name = name
+        self.password = "test"
+        self.token = fetch_api.get_access_token(self.name, self.password)

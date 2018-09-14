@@ -3,7 +3,7 @@ import requests
 
 
 def _send(endpoint, type, data=None, token=None):
-    uri = 'http://api.kalliopeia.killedbynlp.com/' + endpoint
+    uri = 'http://localhost:8081/' + endpoint
     data = json.dumps(data)
     headers = {
         'Content-Type': 'application/json'
@@ -46,7 +46,16 @@ def load_user(token, ui):
 
 
 def create_post(token, data):
-    _send(endpoint="posts", token=token, data=data,type="post")
+    _send(endpoint="posts", token=token, data=data, type="post")
 
-def create_thread(token,data):
+
+def create_thread(token, data):
     _send(endpoint="threads", token=token, data=data, type="post")
+
+
+def create_user(token, data):
+    _send(endpoint="signup", token=token, data=data, type="post")
+
+
+def updated_sentence(token, data):
+    _send(endpoint="sentences", token=token, data=data, type="post")
