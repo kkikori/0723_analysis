@@ -59,3 +59,12 @@ def create_user(token, data):
 
 def updated_sentence(token, data):
     _send(endpoint="sentences", token=token, data=data, type="post")
+
+def get_thi_list(token):
+    threads = load_threads(token)
+
+    thi_list = []
+    for thread in threads:
+        thi_list.append(thread["id"])
+    return thi_list
+

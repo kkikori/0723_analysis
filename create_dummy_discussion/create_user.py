@@ -12,5 +12,5 @@ def create_user_main(f_user):
 
 
 if __name__ == "__main__":
-    f_user = Path("/Users/ida/Dropbox/AAAI_dummy_useres.json")
+    f_user = Path("/Users/ida/Dropbox/AAAI/AAAI_dummy_useres.json")
     create_user_main(f_user)

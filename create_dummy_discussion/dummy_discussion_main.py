@@ -9,7 +9,7 @@ import data_load
 
 def main():
     # posts data load
-    f_n = Path("/Users/ida/Dropbox/AAAI_discussion_dummy.csv")
+    f_n = Path("/Users/ida/Dropbox/AAAI/AAAI_discussion_dummy.csv")
     user_list, post_list = data_load.data_load(f_n)
 
     # post post
