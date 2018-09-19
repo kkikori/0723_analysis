@@ -23,8 +23,13 @@ def data_load(f_n):
                 newuser = DummyUserClass.DummyUser(row[2])
                 users_list[row[2]] = newuser
             # 投稿リストへの追加
-            newpost = DummyPostClass.DummyPost(row[0], row[1], row[2], row[3], \
-                                               row[4], row[5], row[6])
+            newpost = DummyPostClass.DummyPost(id=row[0],
+                                               parent_id=row[1],
+                                               user_id=row[2],
+                                               title=row[7],
+                                               body=row[8],
+                                               created_at=row[5],
+                                               sample=row[6])
             post_list[row[0]] = newpost
 
     return users_list, post_list
