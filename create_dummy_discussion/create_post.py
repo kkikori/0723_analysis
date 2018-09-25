@@ -19,7 +19,7 @@ def _post_post(token, post):
         fetch_api.create_post(token, data)
     return
 
-
+# dummy_discussion_mainから呼び出される
 def create_post_main(user_list, post_list):
     print("create_post_main")
     for pi, post in post_list.items():

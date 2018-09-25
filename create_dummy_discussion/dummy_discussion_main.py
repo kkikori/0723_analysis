@@ -6,6 +6,7 @@ import data_load
 
 
 # 読み込んだデータをAPIを使って復元
+# この前にcreat_userしなきゃダメ
 
 def main():
     # posts data load
